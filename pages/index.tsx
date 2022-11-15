@@ -1,0 +1,241 @@
+import * as React from 'react';
+import {NextPage} from "next";
+import {
+    Avatar,
+    AvatarGroup,
+    Box, Button,
+    Container,
+    Grid,
+    GridItem,
+    Heading,
+    Skeleton,
+    Text,
+    useBreakpointValue
+} from "@chakra-ui/react";
+import {PulseLoader} from "react-spinners";
+import UAParser from "ua-parser-js";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
+const responsive = {
+    desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 3,
+        slidesToSlide: 3 // optional, default to 1.
+    },
+    tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 2,
+        slidesToSlide: 2 // optional, default to 1.
+    },
+    mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1,
+        slidesToSlide: 1 // optional, default to 1.
+    }
+};
+
+const avatars = [
+    {
+        name: 'Git',
+        url: '/images/stack/git.webp',
+    },
+    {
+        name: 'Figma',
+        url: '/images/stack/figma.webp',
+    },
+    {
+        name: 'Node.js',
+        url: '/images/stack/nodejs.webp',
+    },
+    {
+        name: 'React',
+        url: '/images/stack/react.webp',
+    },
+    {
+        name: 'Next.js',
+        url: '/images/stack/nextjs.webp',
+    },
+];
+
+const years = [
+    {
+        year: "2018",
+        state: "obtenu",
+        title: "BEP",
+        desc: "Métiers de l’électricité et de ses environnements connectés",
+        place: "Lycée professionnel l'odyssée"
+    },
+    {
+        year: "2019",
+        state: "obtenu",
+        title: "BEP",
+        desc: "Métiers de l’électricité et de ses environnements connectés",
+        place: "Lycée professionnel l'odyssée"
+    },
+    {
+        year: "2020",
+        state: "obtenu",
+        title: "BEP",
+        desc: "Métiers de l’électricité et de ses environnements connectés",
+        place: "Lycée professionnel l'odyssée"
+    },
+    {
+        year: "2021",
+        state: "obtenu",
+        title: "BEP",
+        desc: "Métiers de l’électricité et de ses environnements connectés",
+        place: "Lycée professionnel l'odyssée"
+    },
+    {
+        year: "2022",
+        state: "obtenu",
+        title: "BEP",
+        desc: "Métiers de l’électricité et de ses environnements connectés",
+        place: "Lycée professionnel l'odyssée"
+    },
+    {
+        year: "2023",
+        state: "obtenu",
+        title: "BEP",
+        desc: "Métiers de l’électricité et de ses environnements connectés",
+        place: "Lycée professionnel l'odyssée"
+    }
+];
+
+// @ts-ignore
+const Home: NextPage = ({deviceType}) => {
+    return <Container maxW='5xl'>
+        <Heading as='h1' size={{md: '4xl'}} sx={{textAlign: "center", fontFamily: "Amiri", fontWeight: "500", margin: "3rem 0"}}>
+            Nathan Flacher<br/>Développeur web et application sur Lyon
+        </Heading>
+
+        <Grid templateColumns='1fr 1.5fr 1fr' gap={"4rem"} sx={{overflow: "hidden", margin: "3rem", alignItems: "center"}}>
+            <Grid w='100%' gap={"2rem"}>
+                <Box>
+                    <Heading as="h3" sx={{opacity: "0.25", fontWeight: "500"}} size='md'>Bio</Heading>
+                    <Text>Je suis un développeur passionné par le JavaScript aimant également l’art et le sport</Text>
+                </Box>
+                <Box>
+                    <Heading as="h3" sx={{opacity: "0.25", fontWeight: "500"}} size='md'>Contact</Heading>
+                    <Text>Lyon, France</Text>
+                    <Text><a href="mailto:contact@nathan-flacher.com">contact@nathan-flacher.com</a></Text>
+                    <Text><a href="tel:06 95 41 73 00">06 95 41 73 00</a></Text>
+                </Box>
+                <Box>
+                    <Heading as="h3" sx={{opacity: "0.25", fontWeight: "500"}} size='md'>Services</Heading>
+                    <Text>Développement web</Text>
+                    <Text>Développement mobile</Text>
+                    <Text>Design</Text>
+                </Box>
+            </Grid>
+            <GridItem w='100%'>
+                <Box borderRadius="999" border='2px' borderColor='gray.200'>
+                    <Skeleton margin="16px" borderRadius="999" height='500px'>
+
+                    </Skeleton>
+                </Box>
+            </GridItem>
+            <Grid w='100%' gap={"4rem"} sx={{justifyContent:"end"}}>
+                <Box sx={{justifySelf:"end", textAlign: "end"}}>
+                    <Heading as="h3" sx={{opacity: "0.25", fontWeight: "500"}} size='md'>Années d’expérience</Heading>
+                    <Text>2</Text>
+                </Box>
+                <Box sx={{justifySelf:"end", textAlign: "end"}}>
+                    <Heading as="h3" sx={{opacity: "0.25", fontWeight: "500"}} size='md'>Projets finis</Heading>
+                    <Text>4</Text>
+                </Box>
+            </Grid>
+        </Grid>
+
+        <hr style={{margin: "2rem"}} />
+
+        <Heading as='h2' size='xl' sx={{fontFamily: "Amiri", fontWeight: "500"}}>Mes compétences <i><span style={{fontSize: "1.5rem"}}>les plus utilisées</span></i></Heading>
+        <Text>Mon stack</Text>
+        <AvatarGroup>
+            {avatars.map((avatar) => (
+                <Avatar
+                    key={avatar.name}
+                    name={avatar.name}
+                    src={avatar.url}
+                    size={{ base: 'sm', md: 'md' }}
+                    position={'relative'}
+                    zIndex={2}
+                    sx={{border: "0.125rem solid grey",}}
+                    _before={{
+                        content: '""',
+                        width: 'full',
+                        height: 'full',
+                        rounded: 'full',
+                        bg: 'white',
+                        position: 'absolute',
+                        zIndex: -1,
+                        top: 0,
+                        left: 0,
+                    }}
+                />
+            ))}
+            <Box sx={{margin: "0 1rem", display: "flex", alignItems: "center", gap: "0.25rem"}}>
+                <PulseLoader size={8} color='grey' />
+                <Text sx={{fontSize: "10px", lineHeight: "10px"}}>En cours<br />d’amélioration</Text>
+            </Box>
+        </AvatarGroup>
+
+        <hr style={{margin: "2rem"}} />
+
+        <Heading as='h2' size='xl' sx={{fontFamily: "Amiri", fontWeight: "500", textAlign: "center"}}>Mes <i>meilleures</i> réalisations</Heading>
+
+        <hr style={{margin: "2rem"}} />
+
+        <Heading as='h2' size='xl' sx={{fontFamily: "Amiri", fontWeight: "500", textAlign: "center"}}>Mon historique</Heading>
+        <Carousel
+            ssr
+            partialVisbile
+            deviceType={deviceType}
+            itemClass="image-item"
+            responsive={responsive}
+        >
+            {years.map(year => {
+                return (
+                    <p key={year.year}>hey</p>
+                );
+            })}
+        </Carousel>
+
+        <hr style={{margin: "2rem"}} />
+
+        <Box sx={{margin: "4rem", display: "flex", flexDirection: "column", gap: "2rem"}}>
+            <Heading as='h2' size='xl' sx={{fontFamily: "Amiri", fontWeight: "500", textAlign: "center"}}>
+                Vous souhaitez avoir plus d’informations sur mon profil ou faire appel à mes services
+            </Heading>
+            <Box sx={{display: "flex", justifyContent: "center"}}>
+                <Button colorScheme='black' variant='outline'>
+                    contacter moi
+                </Button>
+            </Box>
+        </Box>
+
+        <hr style={{margin: "2rem"}} />
+
+        <footer style={{display: "flex", justifyContent: "space-between", margin: "2rem 0"}}>
+            <Text>©2022 | Nathan-Flacher</Text>
+            <Text>contact@nathan-flacher.com</Text>
+        </footer>
+    </Container>
+}
+
+Home.getInitialProps = ({ req }) => {
+    let userAgent: any;
+    if (req) {
+        userAgent = req.headers["user-agent"];
+    } else {
+        userAgent = navigator.userAgent;
+    }
+    const parser: UAParser.UAParserInstance = new UAParser();
+    parser.setUA(userAgent);
+    const result: UAParser.IResult = parser.getResult();
+    const deviceType = (result.device && result.device.type) || "desktop";
+    return { deviceType };
+};
+
+export default Home;

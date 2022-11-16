@@ -16,6 +16,10 @@ import {PulseLoader} from "react-spinners";
 import UAParser from "ua-parser-js";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import Image from 'next/image'
+import ImageNathanFlacher from "../public/images/pictures/nathan-flacher-mobile.jpg";
+import SkillCard from "../components/skillCard";
+import Year from "../components/year";
 
 const responsive = {
     desktop: {
@@ -105,6 +109,7 @@ const years = [
 
 // @ts-ignore
 const Home: NextPage = ({deviceType}) => {
+    // @ts-ignore
     return <Container maxW='5xl'>
         <Heading as='h1' size={{md: '4xl'}} sx={{textAlign: "center", fontFamily: "Amiri", fontWeight: "500", margin: "3rem 0"}}>
             Nathan Flacher<br/>Développeur web et application sur Lyon
@@ -130,10 +135,22 @@ const Home: NextPage = ({deviceType}) => {
                 </Box>
             </Grid>
             <GridItem w='100%'>
-                <Box borderRadius="999" border='2px' borderColor='gray.200'>
-                    <Skeleton margin="16px" borderRadius="999" height='500px'>
-
-                    </Skeleton>
+                <Box borderRadius="999" border='2px' borderColor='gray.200' height='500px' position='relative' margin="1rem">
+                    {/*<Skeleton margin="16px" borderRadius="999" height='500px'>*/}
+                        <Image
+                            alt=""
+                            title=""
+                            // loader={myLoader}
+                            src={ImageNathanFlacher}
+                            placeholder="blur"
+                            layout="fill"
+                            objectFit="cover"
+                            style={{
+                                padding: "16px !important",
+                                borderRadius: "999px"
+                            }}
+                            />
+                    {/*</Skeleton>*/}
                 </Box>
             </GridItem>
             <Grid w='100%' gap={"4rem"} sx={{justifyContent:"end"}}>
@@ -151,6 +168,16 @@ const Home: NextPage = ({deviceType}) => {
         <hr style={{margin: "2rem"}} />
 
         <Heading as='h2' size='xl' sx={{fontFamily: "Amiri", fontWeight: "500"}}>Mes compétences <i><span style={{fontSize: "1.5rem"}}>les plus utilisées</span></i></Heading>
+
+        <Grid
+            h='200px'
+            templateColumns='repeat(3, 1fr)'
+            gap={4}
+        >
+            <GridItem><SkillCard /></GridItem>
+            <GridItem><SkillCard /></GridItem>
+            <GridItem><SkillCard /></GridItem>
+        </Grid>
         <Text>Mon stack</Text>
         <AvatarGroup>
             {avatars.map((avatar) => (
@@ -195,9 +222,9 @@ const Home: NextPage = ({deviceType}) => {
             itemClass="image-item"
             responsive={responsive}
         >
-            {years.map(year => {
+            {years.map(value => {
                 return (
-                    <p key={year.year}>hey</p>
+                    <Year key={value.year} props={value}/>
                 );
             })}
         </Carousel>

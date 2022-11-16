@@ -1,19 +1,12 @@
 import {NextComponentType} from "next";
 
-// @ts-ignore
-const Year: NextComponentType = (
-    year: String = '',
-    state: String = '',
-    title: String = '',
-    desc: String = '',
-    place: String = ''
-) => {
+const Year: NextComponentType = ({props}: any) => {
     return <>
-        <h3>{year}</h3>
-        <p>{state}</p>
-        <p>{title}</p>
-        <p>{desc}</p>
-        <p>{place}</p>
+        <h3>{props.year}</h3>
+        <p>{props.state}</p>
+        <p>{props.title}</p>
+        <p>{props.desc}</p>
+        <p>{props.place}</p>
     </>
 }
 

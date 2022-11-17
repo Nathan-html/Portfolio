@@ -94,8 +94,7 @@ function ProductAddToCart() {
                             fontSize="2xl"
                             fontWeight="semibold"
                             as="h4"
-                            lineHeight="tight"
-                            isTruncated={true}>
+                            lineHeight="tight">
                             {data.name}
                         </Box>
                         <Tooltip

@@ -109,7 +109,10 @@ const years = [
 
 // @ts-ignore
 const Home: NextPage = ({deviceType}) => {
-    // @ts-ignore
+
+    const yearProps = (value: any) => {
+        return {props: value}
+    }
     return <Container maxW='5xl'>
         <Heading as='h1' size={{md: '4xl'}} sx={{textAlign: "center", fontFamily: "Amiri", fontWeight: "500", margin: "3rem 0"}}>
             Nathan Flacher<br/>Développeur web et application sur Lyon
@@ -224,7 +227,7 @@ const Home: NextPage = ({deviceType}) => {
         >
             {years.map(value => {
                 return (
-                    <Year key={value.year} props={value}/>
+                    <Year key={value.year} {...yearProps(value)}/>
                 );
             })}
         </Carousel>

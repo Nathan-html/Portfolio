@@ -8,7 +8,7 @@ import {appWithTranslation} from "next-i18next";
 
 function App({ Component, pageProps }: AppProps) {
   return <ChakraProvider theme={theme}>
-    <CustomCursor />
+    {/*<CustomCursor />*/}
     <Navbar />
     <Component {...pageProps} />
   </ChakraProvider>

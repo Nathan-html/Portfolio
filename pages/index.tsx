@@ -181,35 +181,36 @@ const Home: NextPage = ({deviceType}) => {
             <GridItem><SkillCard /></GridItem>
             <GridItem><SkillCard /></GridItem>
         </Grid>
-        <Text>Mon stack</Text>
-        <AvatarGroup>
-            {avatars.map((avatar) => (
-                <Avatar
-                    key={avatar.name}
-                    name={avatar.name}
-                    src={avatar.url}
-                    size={{ base: 'sm', md: 'md' }}
-                    position={'relative'}
-                    zIndex={2}
-                    sx={{border: "0.125rem solid grey",}}
-                    _before={{
-                        content: '""',
-                        width: 'full',
-                        height: 'full',
-                        rounded: 'full',
-                        bg: 'white',
-                        position: 'absolute',
-                        zIndex: -1,
-                        top: 0,
-                        left: 0,
-                    }}
-                />
-            ))}
-            <Box sx={{margin: "0 1rem", display: "flex", alignItems: "center", gap: "0.25rem"}}>
-                <PulseLoader size={8} color='grey' />
-                <Text sx={{fontSize: "10px", lineHeight: "10px"}}>En cours<br />d’amélioration</Text>
-            </Box>
-        </AvatarGroup>
+        <Box marginTop={'0.5rem'}>
+            <AvatarGroup>
+                {avatars.map((avatar) => (
+                    <Avatar
+                        key={avatar.name}
+                        name={avatar.name}
+                        src={avatar.url}
+                        size={{ base: 'sm', md: 'md' }}
+                        position={'relative'}
+                        zIndex={2}
+                        sx={{border: "0.125rem solid grey",}}
+                        _before={{
+                            content: '""',
+                            width: 'full',
+                            height: 'full',
+                            rounded: 'full',
+                            bg: 'white',
+                            position: 'absolute',
+                            zIndex: -1,
+                            top: 0,
+                            left: 0,
+                        }}
+                    />
+                ))}
+                <Box sx={{margin: "0 1rem", display: "flex", alignItems: "center", gap: "0.25rem"}}>
+                    <PulseLoader size={8} color='grey' />
+                    <Text sx={{fontSize: "10px", lineHeight: "10px"}}>En cours<br />d’amélioration</Text>
+                </Box>
+            </AvatarGroup>
+        </Box>
 
         <hr style={{margin: "2rem"}} />
 
@@ -218,19 +219,21 @@ const Home: NextPage = ({deviceType}) => {
         <hr style={{margin: "2rem"}} />
 
         <Heading as='h2' size='xl' sx={{fontFamily: "Amiri", fontWeight: "500", textAlign: "center"}}>Mon historique</Heading>
-        <Carousel
-            ssr
-            partialVisbile
-            deviceType={deviceType}
-            itemClass="image-item"
-            responsive={responsive}
-        >
-            {years.map(value => {
-                return (
-                    <Year key={value.year} {...yearProps(value)}/>
-                );
-            })}
-        </Carousel>
+        <Box marginTop={"2rem"}>
+            <Carousel
+                ssr
+                partialVisbile
+                deviceType={deviceType}
+                itemClass="image-item"
+                responsive={responsive}
+            >
+                {years.map(value => {
+                    return (
+                        <Year key={value.year} {...yearProps(value)}/>
+                    );
+                })}
+            </Carousel>
+        </Box>
 
         <hr style={{margin: "2rem"}} />
 

@@ -8,9 +8,7 @@ import {
     Grid,
     GridItem,
     Heading,
-    Skeleton,
-    Text,
-    useBreakpointValue
+    Text
 } from "@chakra-ui/react";
 import {PulseLoader} from "react-spinners";
 import UAParser from "ua-parser-js";
@@ -20,6 +18,8 @@ import Image from 'next/image'
 import ImageNathanFlacher from "../public/images/pictures/nathan-flacher-mobile.jpg";
 import SkillCard from "../components/skillCard";
 import Year from "../components/year";
+import Link from "next/link";
+import Achievement from "../components/achievement";
 
 const responsive = {
     desktop: {
@@ -107,12 +107,40 @@ const years = [
     }
 ];
 
+const achivements = [
+    {
+        img: "https://via.placeholder.com/150.png",
+        tag: "Design",
+        title: "Maquettage portfolio Noir et Blanc",
+        desc: ""
+    },
+    {
+        img: "https://via.placeholder.com/150.png",
+        tag: "Développement web",
+        title: "Diagram Creator",
+        desc: ""
+    },
+    {
+        img: "https://via.placeholder.com/150.png",
+        tag: "Développement mobile",
+        title: "PiCom",
+        desc: ""
+    }
+];
 // @ts-ignore
 const Home: NextPage = ({deviceType}) => {
 
     const yearProps = (value: any) => {
         return {props: value}
     }
+
+    const achievementProps = (value: any, key: number) => {
+        const render = {...value, key: key}
+        return {
+            props: render
+        }
+    }
+
     return <Container maxW='5xl'>
         <Heading as='h1' size={{md: '4xl'}} sx={{textAlign: "center", fontFamily: "Amiri", fontWeight: "500", margin: "3rem 0"}}>
             Nathan Flacher<br/>Développeur web et application sur Lyon
@@ -122,7 +150,7 @@ const Home: NextPage = ({deviceType}) => {
             <Grid w='100%' gap={"2rem"}>
                 <Box>
                     <Heading as="h3" sx={{opacity: "0.25", fontWeight: "500"}} size='md'>Bio</Heading>
-                    <Text>Je suis un développeur passionné par le JavaScript aimant également l’art et le sport</Text>
+                    <Text>Je suis un développeur passionné par le JavaScript, aimant également l’art 🎨 et le volley 🏐</Text>
                 </Box>
                 <Box>
                     <Heading as="h3" sx={{opacity: "0.25", fontWeight: "500"}} size='md'>Contact</Heading>
@@ -138,7 +166,8 @@ const Home: NextPage = ({deviceType}) => {
                 </Box>
             </Grid>
             <GridItem w='100%'>
-                <Box borderRadius="999" border='2px' borderColor='gray.200' height='500px' position='relative' margin="1rem">
+                <Box borderRadius="999" border='2px' borderColor='gray.200' height='500px' margin="1rem" padding="1rem">
+                    <Box borderRadius="999" height={"100%"} width={"100%"} position='relative' overflow={"hidden"}>
                     {/*<Skeleton margin="16px" borderRadius="999" height='500px'>*/}
                         <Image
                             alt=""
@@ -149,10 +178,11 @@ const Home: NextPage = ({deviceType}) => {
                             layout="fill"
                             objectFit="cover"
                             style={{
-                                padding: "16px !important",
-                                borderRadius: "999px"
+                                borderRadius: "999px",
+                                userSelect: "none"
                             }}
                             />
+                    </Box>
                     {/*</Skeleton>*/}
                 </Box>
             </GridItem>
@@ -170,18 +200,17 @@ const Home: NextPage = ({deviceType}) => {
 
         <hr style={{margin: "2rem"}} />
 
-        <Heading as='h2' size='xl' sx={{fontFamily: "Amiri", fontWeight: "500"}}>Mes compétences <i><span style={{fontSize: "1.5rem"}}>les plus utilisées</span></i></Heading>
+        <Heading as='h2' size='xl' sx={{fontFamily: "Amiri", fontWeight: "500", marginLeft: "1rem"}}>Mes compétences <i><span style={{fontSize: "1.5rem"}}>les plus utilisées</span></i></Heading>
 
         <Grid
             h='200px'
             templateColumns='repeat(3, 1fr)'
-            gap={4}
         >
-            <GridItem><SkillCard /></GridItem>
-            <GridItem><SkillCard /></GridItem>
-            <GridItem><SkillCard /></GridItem>
+            <GridItem margin={"0.5rem"}><SkillCard /></GridItem>
+            <GridItem margin={"0.5rem"}><SkillCard /></GridItem>
+            <GridItem margin={"0.5rem"}><SkillCard /></GridItem>
         </Grid>
-        <Box marginTop={'0.5rem'}>
+        <Box margin={'0.5rem 0 1rem 0.5rem'}>
             <AvatarGroup>
                 {avatars.map((avatar) => (
                     <Avatar
@@ -215,6 +244,17 @@ const Home: NextPage = ({deviceType}) => {
         <hr style={{margin: "2rem"}} />
 
         <Heading as='h2' size='xl' sx={{fontFamily: "Amiri", fontWeight: "500", textAlign: "center"}}>Mes <i>meilleures</i> réalisations</Heading>
+        <Carousel
+            ssr
+            partialVisbile
+            deviceType={deviceType}
+            itemClass="image-item"
+            responsive={responsive}
+        >
+            {achivements.map((achievement: any, key: number) => {
+                return <Achievement key={key} {...achievementProps(achievement, key)} />
+            })}
+        </Carousel>
 
         <hr style={{margin: "2rem"}} />
 
@@ -227,9 +267,9 @@ const Home: NextPage = ({deviceType}) => {
                 itemClass="image-item"
                 responsive={responsive}
             >
-                {years.map(value => {
+                {years.map((value: any, key: number) => {
                     return (
-                        <Year key={value.year} {...yearProps(value)}/>
+                        <Year key={key} {...yearProps(value)}/>
                     );
                 })}
             </Carousel>
@@ -242,9 +282,11 @@ const Home: NextPage = ({deviceType}) => {
                 Vous souhaitez avoir plus d’informations sur mon profil ou faire appel à mes services
             </Heading>
             <Box sx={{display: "flex", justifyContent: "center"}}>
-                <Button colorScheme='black' variant='outline'>
-                    contacter moi
-                </Button>
+                <Link href={"/contact"}>
+                    <Button colorScheme='black' variant='outline'>
+                        contacter moi
+                    </Button>
+                </Link>
             </Box>
         </Box>
 

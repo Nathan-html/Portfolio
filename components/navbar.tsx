@@ -1,6 +1,9 @@
 import {Box, Container} from "@chakra-ui/react";
 import {NextPage} from "next";
 import Link from "next/link";
+import Image from "next/image";
+import ImageLogo from "../public/logo.svg";
+
 
 const Navbar: NextPage = () => {
     return (
@@ -18,9 +21,13 @@ const Navbar: NextPage = () => {
             backdropFilter: "blur(10px)"
         }}>
             <Container maxW='6xl' style={{display: "flex", justifyContent: "space-between", padding: "1rem"}}>
-                <Link href="/"><a><h2>NF</h2></a></Link>
+                <Link href="/">
+                    <Image src={ImageLogo} height={20} width={20} />
+                </Link>
                 <Box>
-                    <Link href="/projects"><a>projects</a></Link>
+                    <Link href="/projects">
+                        <a>projects</a>
+                    </Link>
                 </Box>
             </Container>
         </nav>

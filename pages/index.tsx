@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {NextPage} from "next";
+import Head from "next/head";
 import {
     Avatar,
     AvatarGroup,
@@ -142,8 +143,14 @@ const Home: NextPage = ({deviceType}) => {
     }
 
     return <Container maxW='5xl'>
+        <Head>
+            <title>Développeur sur Lyon</title>
+            <meta name="description" content="Nathan Flacher, Développeur web et logiciel sur Lyon. JS, TS, Node.js, electron.js..."/>
+        </Head>
+
         <Heading as='h1' size={{md: '4xl'}} sx={{textAlign: "center", fontFamily: "Amiri", fontWeight: "500", margin: "3rem 0"}}>
-            Nathan Flacher<br/>Développeur web et application sur Lyon
+            Nathan Flacher<br/>
+            Développeur web et logiciel sur Lyon
         </Heading>
 
         <Grid templateColumns='1fr 1.5fr 1fr' gap={"4rem"} sx={{overflow: "hidden", margin: "3rem", alignItems: "center"}}>

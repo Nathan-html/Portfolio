@@ -6,6 +6,7 @@ import Script from 'next/script'
 export default function Document() {
     return (
         <Html lang='fr'>
+            <Head/>
             <body>
             {/* 👇 Here's the script */}
             <ColorModeScript initialColorMode={theme.config.initialColorMode} />

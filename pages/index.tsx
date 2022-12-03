@@ -111,18 +111,21 @@ const years = [
 const achivements = [
     {
         img: "https://via.placeholder.com/150.png",
+        alt: "placeholder",
         tag: "Design",
         title: "Maquettage portfolio Noir et Blanc",
         desc: ""
     },
     {
         img: "https://via.placeholder.com/150.png",
+        alt: "placeholder",
         tag: "Développement web",
         title: "Diagram Creator",
         desc: ""
     },
     {
         img: "https://via.placeholder.com/150.png",
+        alt: "placeholder",
         tag: "Développement mobile",
         title: "PiCom",
         desc: ""
@@ -177,7 +180,7 @@ const Home: NextPage = ({deviceType}) => {
                     <Box borderRadius="999" height={"100%"} width={"100%"} position='relative' overflow={"hidden"}>
                     {/*<Skeleton margin="16px" borderRadius="999" height='500px'>*/}
                         <Image
-                            alt=""
+                            alt="me "
                             title=""
                             // loader={myLoader}
                             src={ImageNathanFlacher}

@@ -22,7 +22,7 @@ const Navbar: NextPage = () => {
         }}>
             <Container maxW='6xl' style={{display: "flex", justifyContent: "space-between", padding: "1rem"}}>
                 <Link href="/">
-                    <Image src={ImageLogo} height={20} width={20} />
+                    <Image src={ImageLogo} height={20} width={20} alt={"Mon logo, Nathan Flacher"} />
                 </Link>
                 <Box>
                     <Link href="/projects">

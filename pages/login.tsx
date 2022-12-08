@@ -10,33 +10,61 @@ import {
     Image,
 } from '@chakra-ui/react';
 import Link from "next/link";
+import {signIn} from "next-auth/react";
+import {ChangeEvent, FormEvent, FormEventHandler, useState} from "react";
 
 export default function SplitScreen() {
+    const [user, setUser] = useState({email: "", password: ""});
+    function handleEmail(event: ChangeEvent<HTMLInputElement>) {
+        setUser({...user, email: event.target.value});
+    }
+    function handlePassword(event: ChangeEvent<HTMLInputElement>) {
+        setUser({...user, password: event.target.value});
+    }
+    const handleForm: FormEventHandler<HTMLFormElement> = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const res = await signIn('credentials', {
+            email: user.email,
+            password: user.password,
+            redirect: false
+        });
+        if (res && res.error) console.log(res);
+    }
     return (
         <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
             <Flex p={8} flex={1} align={'center'} justify={'center'}>
                 <Stack spacing={4} w={'full'} maxW={'md'}>
-                    <Heading fontSize={'2xl'}>Sign in to your account</Heading>
-                    <FormControl id="email">
-                        <FormLabel>Email</FormLabel>
-                        <Input type="email" />
-                    </FormControl>
-                    <FormControl id="password">
-                        <FormLabel>Password</FormLabel>
-                        <Input type="password" />
-                    </FormControl>
-                    <Stack spacing={6}>
-                        <Stack
-                            direction={{ base: 'column', sm: 'row' }}
-                            align={'start'}
-                            justify={'space-between'}>
-                            <Checkbox>Remember me</Checkbox>
-                            <Link color={'blue.500'} href="/forgot-password">Forgot password ?</Link>
+                    <form onSubmit={handleForm}>
+                        <Heading fontSize={'2xl'}>Sign in to your account</Heading>
+                        <FormControl id="email">
+                            <FormLabel>Email</FormLabel>
+                            <Input
+                                name={"email"}
+                                type="email"
+                                value={user.email}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => handleEmail(e)} />
+                        </FormControl>
+                        <FormControl id="password">
+                            <FormLabel>Password</FormLabel>
+                            <Input
+                                name={"password"}
+                                type="password"
+                                value={user.password}
+                                onChange={(e: ChangeEvent<HTMLInputElement>) => handlePassword(e)} />
+                        </FormControl>
+                        <Stack spacing={6}>
+                            <Stack
+                                direction={{ base: 'column', sm: 'row' }}
+                                align={'start'}
+                                justify={'space-between'}>
+                                <Checkbox>Remember me</Checkbox>
+                                <Link color={'blue.500'} href="/forgot-password">Forgot password ?</Link>
+                            </Stack>
+                            <Button type={"submit"} colorScheme={'blue'} variant={'solid'}>
+                                Sign in
+                            </Button>
                         </Stack>
-                        <Button colorScheme={'blue'} variant={'solid'}>
-                            Sign in
-                        </Button>
-                    </Stack>
+                    </form>
                 </Stack>
             </Flex>
             <Flex flex={1}>

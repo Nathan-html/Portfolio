@@ -34,7 +34,7 @@ const NextAuthOptions: NextAuthOptions = {
     pages: {
         signIn: "/login",
         signOut: '/logout'
-    };
+    }
 }
 
 export default NextAuth(NextAuthOptions)

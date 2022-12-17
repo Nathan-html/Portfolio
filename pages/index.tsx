@@ -69,21 +69,20 @@ const Home: NextPage = ({deviceType}) => {
         return <p>dashboard</p>
     } else {
         // @ts-ignore
-        return <Container maxW='5xl'>
+        return <main>
+        <Container maxW='5xl'>
             <Head>
-                <title>Développeur sur Lyon</title>
+                <title>Développeur front-end freelance sur Lyon</title>
                 <meta name="description"
-                      content="Nathan Flacher, Développeur web et logiciel sur Lyon. JS, TS, Node.js, electron.js..."/>
+                      content="Nathan Flacher, Je suis un développeur passionné par le JavaScript, aimant également
+                      l’art 🎨 et le volley 🏐"/>
             </Head>
-
             <Heading as='h1' size={{md: '4xl'}}
                      sx={{textAlign: "center", fontFamily: "Amiri", fontWeight: "500", margin: "3rem 0"}}>
                 Nathan Flacher<br/>
                 Développeur web et logiciel sur Lyon
             </Heading>
-
-            <Grid templateColumns='1fr 1.5fr 1fr' gap={"4rem"}
-                  sx={{overflow: "hidden", margin: "3rem", alignItems: "center"}}>
+            <Grid templateColumns={{base: '1fr', md: '1fr 1.5fr 1fr'}} gap={"4rem"} sx={{overflow: "hidden", margin: "3rem", alignItems: "center"}}>
                 <Grid w='100%' gap={"2rem"}>
                     <Box>
                         <Heading as="h3" sx={{opacity: "0.25", fontWeight: "500"}} size='md'>Bio</Heading>
@@ -137,15 +136,12 @@ const Home: NextPage = ({deviceType}) => {
                     </Box>
                 </Grid>
             </Grid>
-
             <hr style={{margin: "2rem"}}/>
-
             <Heading as='h2' size='xl' sx={{fontFamily: "Amiri", fontWeight: "500", marginLeft: "1rem"}}>Mes
                 compétences <i><span style={{fontSize: "1.5rem"}}>les plus utilisées</span></i></Heading>
-
             <Grid
-                h='200px'
-                templateColumns='repeat(3, 1fr)'
+                minHeight='200px'
+                templateColumns={{base: '1fr', md: 'repeat(3, 1fr)'}}
             >
                 <GridItem margin={"0.5rem"}><SkillCard skill={skills[0]}/></GridItem>
                 <GridItem margin={"0.5rem"}><SkillCard skill={skills[1]}/></GridItem>
@@ -157,7 +153,7 @@ const Home: NextPage = ({deviceType}) => {
                         <Avatar
                             key={key}
                             name={avatar.name}
-                            src={avatar.img}
+                            src={avatar.img.src}
                             size={{base: 'sm', md: 'md'}}
                             position={'relative'}
                             zIndex={2}
@@ -181,9 +177,7 @@ const Home: NextPage = ({deviceType}) => {
                     </Box>
                 </AvatarGroup>
             </Box>
-
             <hr style={{margin: "2rem"}}/>
-
             <Heading as='h2' size='xl' sx={{
                 fontFamily: "Amiri",
                 fontWeight: "500",
@@ -200,9 +194,7 @@ const Home: NextPage = ({deviceType}) => {
                     return <Achievement key={key} {...achievementProps(achievement, key)} />
                 })}
             </Carousel>
-
             <hr style={{margin: "2rem"}}/>
-
             <Heading as='h2' size='xl' sx={{fontFamily: "Amiri", fontWeight: "500", textAlign: "center"}}>Mon
                 historique</Heading>
             <Box marginTop={"2rem"}>
@@ -220,9 +212,7 @@ const Home: NextPage = ({deviceType}) => {
                     })}
                 </Carousel>
             </Box>
-
             <hr style={{margin: "2rem"}}/>
-
             <Box sx={{margin: "4rem", display: "flex", flexDirection: "column", gap: "2rem"}}>
                 <Heading as='h2' size='xl' sx={{fontFamily: "Amiri", fontWeight: "500", textAlign: "center"}}>
                     Vous souhaitez avoir plus d’informations sur mon profil ou faire appel à mes services
@@ -235,14 +225,13 @@ const Home: NextPage = ({deviceType}) => {
                     </Link>
                 </Box>
             </Box>
-
             <hr style={{margin: "2rem"}}/>
-
             <footer style={{display: "flex", justifyContent: "space-between", margin: "2rem 0"}}>
                 <Text>©2022 | Nathan-Flacher</Text>
                 <Text>contact@nathan-flacher.com</Text>
             </footer>
         </Container>
+        </main>
     }
 }
 

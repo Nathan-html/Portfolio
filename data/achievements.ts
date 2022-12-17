@@ -1,4 +1,12 @@
-const achievements = [
+type Achievement = {
+    img: string,
+    alt: string,
+    tag: string,
+    title: string,
+    desc: string,
+}
+
+const achievements: Achievement[] = [
     {
         img: "https://cdn.pixabay.com/photo/2022/11/23/16/03/butterfly-7612383_960_720.jpg",
         alt: "placeholder",

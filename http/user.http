@@ -1,0 +1,30 @@
+### Create user jone if don't exist
+POST {{host}}/user
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "jone",
+  "email": "jone@nathan-flacher.com",
+  "password": "test"
+}
+
+### Update the field name of jone
+PATCH {{host}}/user?email=jone@nathan-flacher.com
+Accept: application/json
+
+### Remove jone
+DELETE {{host}}/user
+Accept: application/json
+
+### Read default page of users (10 first users)
+GET {{host}}/users
+Accept: application/json
+
+### Read specific page of user
+GET {{host}}/users?skip=10&take=10
+Accept: application/json
+
+### Read user with specific email
+GET {{host}}/user?email=nathan-flacher.com
+Accept: application/json

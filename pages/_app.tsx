@@ -9,13 +9,13 @@ import { SessionProvider } from "next-auth/react"
 
 // @ts-ignore
 function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
-  return <SessionProvider session={session}>
-      <ChakraProvider theme={theme}>
-      {/*<CustomCursor />*/}
-      <Navbar />
-      <Component {...pageProps} />
-    </ChakraProvider>
-  </SessionProvider>
+    return <SessionProvider session={session}>
+        <ChakraProvider theme={theme}>
+            {/*<CustomCursor />*/}
+            <Navbar />
+            <Component {...pageProps} />
+        </ChakraProvider>
+    </SessionProvider>
 }
 
 export default appWithTranslation(App)

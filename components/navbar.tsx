@@ -11,7 +11,7 @@ const Navbar: NextPage = () => {
     console.log(session?.user?.image)
     return (
         <nav style={{
-            zIndex: "100",
+            zIndex: "101",
             position: "fixed",
             top: 0,
             display: "flex",

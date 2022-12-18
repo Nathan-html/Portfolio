@@ -61,7 +61,7 @@ const Home: NextPage = ({deviceType}) => {
     }
 
     // Page for admin
-    if (session) {
+    if (session?.user?.role && session?.user?.role === "ADMIN"|| session?.user?.role === "OWNER") {
         return <p>dashboard</p>
     } else {
         // @ts-ignore

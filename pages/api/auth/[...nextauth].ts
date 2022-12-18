@@ -1,11 +1,20 @@
 import NextAuth, {NextAuthOptions} from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import GoogleProvider from 'next-auth/providers/google';
 
 const NextAuthOptions: NextAuthOptions = {
+    secret: process.env.NEXTAUTH_SECRET,
+    jwt: {
+      secret: process.env.NEXTAUTH_SECRET
+    },
     session: {
         strategy: "jwt"
     },
     providers: [
+        GoogleProvider({
+            clientId: process.env.GOOGLE_ID as string,
+            clientSecret: process.env.GOOGLE_SECRET as string
+        }),
         CredentialsProvider({
             id: "",
             type: "credentials",

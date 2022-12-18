@@ -46,20 +46,16 @@ const responsive = {
 
 // @ts-ignore
 const Home: NextPage = ({deviceType}) => {
-
-    const { data: session } = useSession()
-
+    const { data: session } = useSession();
     const yearProps = (value: any) => {
         return {props: value}
     }
-
     const achievementProps = (value: any, key: number) => {
         const render = {...value, key: key}
         return {
             props: render
         }
     }
-
     const skillProps = (value: any) => {
         return {props: value}
     }

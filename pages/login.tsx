@@ -7,7 +7,7 @@ import {
     Heading,
     Input,
     Stack,
-    Image, Alert, AlertIcon, AlertTitle, AlertDescription,
+    Image, Alert, AlertIcon, AlertTitle, AlertDescription, Box, Text,
 } from '@chakra-ui/react';
 import Link from "next/link";
 import { getProviders, signIn } from "next-auth/react"
@@ -39,12 +39,13 @@ export default function SplitScreen({ providers } : { providers: [{name: string,
         <Head>
             <title>connexion - nathan flacher</title>
         </Head>
-        <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
+        <Stack height={'calc(100vh - 64px)'} direction={{ base: 'column', md: 'row' }}>
             <Flex p={8} flex={1} align={'center'} justify={'center'}>
                 <Stack spacing={4} w={'full'} maxW={'md'}>
                     <form onSubmit={handleForm}>
-                        <Heading fontSize={'2xl'} marginBottom={"2rem"}>Connectez-vous à votre compte</Heading>
-                        <FormControl id="email" marginBottom={"1rem"}>
+                        <Heading fontSize={'2xl'}>Connectez-vous à votre compte</Heading>
+                        <Text marginBottom={"1rem"}>Mes <Link href={"./terms"}><a>conditions d&#39;utilisation</a></Link> / <Link href={"./privacy"}><a>règles de confidentialité</a></Link></Text>
+                        <FormControl id="email">
                             <FormLabel>Email</FormLabel>
                             <Input
                                 name={"email"}
@@ -65,25 +66,25 @@ export default function SplitScreen({ providers } : { providers: [{name: string,
                                 direction={{ base: 'column', sm: 'row' }}
                                 align={'start'}
                                 justify={'space-between'}>
-                                <Checkbox>Remember me</Checkbox>
-                                <Link color={'blue.500'} href="/forgot-password">Forgot password ?</Link>
+                                <Checkbox>Rester connecter</Checkbox>
+                                <Link color={'blue.500'} href="/forgot-password">Mot de passe oublié ?</Link>
                             </Stack>
                             <Button type={"submit"} colorScheme={'blue'} variant={'solid'}>
-                                Sign in
+                                Se connecter
                             </Button>
                         </Stack>
                     </form>
-                    <p>ou</p>
-                    {Object.values(providers).map((provider: {name: string, id: string}) => (
-                        provider.name !== 'Credentials' && (
-                            <div key={provider.name}>
-                                <Button onClick={() => signIn(provider.id)}>
-                                    Connexion via {provider.name}
-                                </Button>
-                            </div>
-                        )
-                    ))}
-                    <p><Link href={"./terms"}><a>conditions d&#39;utilisation</a></Link> / <Link href={"./privacy"}><a>règles de confidentialité</a></Link></p>
+                    <Box display={"flex"} gap={2}>
+                        {Object.values(providers).map((provider: {name: string, id: string}) => (
+                            provider.name !== 'Credentials' && (
+                                <div key={provider.name}>
+                                    <Button onClick={() => signIn(provider.id)}>
+                                        via {provider.name}
+                                    </Button>
+                                </div>
+                            )
+                        ))}
+                    </Box>
                 </Stack>
             </Flex>
             <Flex flex={1}>

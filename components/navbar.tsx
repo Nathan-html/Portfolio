@@ -8,7 +8,6 @@ import * as React from "react";
 
 const Navbar: NextPage = () => {
     const { data: session } = useSession()
-    console.log(session?.user?.image)
     return (
         <nav style={{
             zIndex: "101",

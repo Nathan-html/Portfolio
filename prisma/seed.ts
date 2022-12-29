@@ -1,19 +1,21 @@
 import { PrismaClient } from '@prisma/client'
 import bcrypt from "bcrypt";
 const prisma = new PrismaClient()
+
 async function main() {
     if (
         typeof process.env.ADMIN_EMAIL === "string" &&
         typeof process.env.ADMIN_NAME === "string" &&
         typeof process.env.ADMIN_PASSWORD === "string"
     ) {
+        const hash = await bcrypt.hash(process.env.ADMIN_PASSWORD, Number(process.env.AUTH_SALT) || 10);
         await prisma.user.upsert({
             where: {email: process.env.ADMIN_EMAIL},
             update: {},
             create: {
                 email: process.env.ADMIN_EMAIL,
                 name: process.env.ADMIN_NAME,
-                password: await bcrypt.hash(process.env.ADMIN_PASSWORD, 6),
+                password: hash,
                 role: 'OWNER'
             },
         })

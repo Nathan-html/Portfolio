@@ -1,33 +1,48 @@
+import {StaticImageData} from "next/image";
+import laTania from '../public/images/black-ski-la-tania.png';
+import portfolioFigma from '../public/images/portfolio.png';
+import portfolioNextJS from '../public/images/portfolio-nextjs.png';
+import wgy from '../public/images/WGY.png';
+
 type Achievement = {
-    img: string,
+    img: string | StaticImageData,
     alt: string,
     tag: string,
     title: string,
     desc: string,
+    link?: string
 }
 
 const achievements: Achievement[] = [
     {
-        img: "https://cdn.pixabay.com/photo/2022/11/23/16/03/butterfly-7612383_960_720.jpg",
+        img: portfolioFigma,
         alt: "placeholder",
-        tag: "Design",
-        title: "Maquettage portfolio Noir et Blanc",
+        tag: "Figma",
+        title: "Maquettage de mon portfolio",
+        desc: "mon portfolio en N&B"
+    },
+    {
+        img: portfolioNextJS,
+        alt: "placeholder",
+        tag: "Next.js (TypeScript)",
+        title: "Site avec administration",
+        desc: "mon portfolio en N&B"
+    },
+    {
+        img: wgy,
+        alt: "placeholder",
+        tag: "API Express | webapp Create React App",
+        title: "We Guide You",
         desc: ""
     },
     {
-        img: "https://cdn.pixabay.com/photo/2022/11/29/16/34/bird-7624853_960_720.jpg",
-        alt: "placeholder",
-        tag: "Développement web",
-        title: "Diagram Creator",
-        desc: ""
+        img: laTania,
+        alt: "Station la tania de l'école de ski, black ski.",
+        tag: "Wordpress",
+        title: "Station la tania de l'ESA black ski.",
+        desc: "Création d'un site Wordpress",
+        link: "https://latania-ecole-ski.black-ski.com/fr/"
     },
-    {
-        img: "https://cdn.pixabay.com/photo/2012/06/19/10/32/owl-50267_960_720.jpg",
-        alt: "placeholder",
-        tag: "Développement mobile",
-        title: "PiCom",
-        desc: ""
-    }
 ];
 
 export default achievements;

@@ -1,91 +1,21 @@
-import {
-    Button,
-    Checkbox,
-    Flex,
-    FormControl,
-    FormLabel,
-    Heading,
-    Input,
-    Stack,
-    Image, Alert, AlertIcon, AlertTitle, AlertDescription, Box, Text,
-} from '@chakra-ui/react';
-import Link from "next/link";
-import { getProviders, signIn } from "next-auth/react"
-import {ChangeEvent, FormEvent, FormEventHandler, useState} from "react";
-import Head from "next/head";
 import * as React from "react";
+import Head from "next/head";
+import {
+    Flex,
+    Stack,
+    Image,
+} from '@chakra-ui/react';
+import LoginForm from "../components/form/loginForm";
+import {getProviders} from "next-auth/react";
 
-export default function SplitScreen({ providers } : { providers: [{name: string, id: string}]}) {
-    const [user, setUser] = useState({email: "", password: ""});
-    const [res, setRes] = useState({});
-    function handleEmail(event: ChangeEvent<HTMLInputElement>) {
-        setUser({...user, email: event.target.value});
-    }
-    function handlePassword(event: ChangeEvent<HTMLInputElement>) {
-        setUser({...user, password: event.target.value});
-    }
-    const handleForm: FormEventHandler<HTMLFormElement> = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const res = await signIn('credentials', {
-            email: user.email,
-            password: user.password,
-            redirect: false,
-            callbackUrl: `${window.location.origin}`
-        });
-        if (typeof res !== "undefined") setRes(res);
-        if (res && res.error) console.log(res);
-    }
+export default function LoginPage({ providers } : { providers: [{name: string, id: string}]}) {
     return <main>
         <Head>
             <title>connexion - nathan flacher</title>
         </Head>
-        <Stack height={'calc(100vh - 64px)'} direction={{ base: 'column', md: 'row' }}>
+        <Stack height={"100%"} direction={{ base: 'column', md: 'row' }}>
             <Flex p={8} flex={1} align={'center'} justify={'center'}>
-                <Stack spacing={4} w={'full'} maxW={'md'}>
-                    <form onSubmit={handleForm}>
-                        <Heading fontSize={'2xl'}>Connectez-vous à votre compte</Heading>
-                        <Text marginBottom={"1rem"}>Mes <Link href={"./terms"}><a>conditions d&#39;utilisation</a></Link> / <Link href={"./privacy"}><a>règles de confidentialité</a></Link></Text>
-                        <FormControl id="email">
-                            <FormLabel>Email</FormLabel>
-                            <Input
-                                name={"email"}
-                                type="email"
-                                value={user.email}
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => handleEmail(e)} />
-                        </FormControl>
-                        <FormControl id="password">
-                            <FormLabel>Mot de passe</FormLabel>
-                            <Input
-                                name={"password"}
-                                type="password"
-                                value={user.password}
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => handlePassword(e)} />
-                        </FormControl>
-                        <Stack spacing={6}>
-                            <Stack
-                                direction={{ base: 'column', sm: 'row' }}
-                                align={'start'}
-                                justify={'space-between'}>
-                                <Checkbox>Rester connecter</Checkbox>
-                                <Link color={'blue.500'} href="/forgot-password">Mot de passe oublié ?</Link>
-                            </Stack>
-                            <Button type={"submit"} colorScheme={'blue'} variant={'solid'}>
-                                Se connecter
-                            </Button>
-                        </Stack>
-                    </form>
-                    <Box display={"flex"} gap={2}>
-                        {Object.values(providers).map((provider: {name: string, id: string}) => (
-                            provider.name !== 'Credentials' && (
-                                <div key={provider.name}>
-                                    <Button onClick={() => signIn(provider.id)}>
-                                        via {provider.name}
-                                    </Button>
-                                </div>
-                            )
-                        ))}
-                    </Box>
-                </Stack>
+                <LoginForm providers={providers} />
             </Flex>
             <Flex flex={1}>
                 <Image
@@ -97,7 +27,7 @@ export default function SplitScreen({ providers } : { providers: [{name: string,
                 />
             </Flex>
         </Stack>
-    </main>;
+    </main>
 }
 
 export async function getServerSideProps() {

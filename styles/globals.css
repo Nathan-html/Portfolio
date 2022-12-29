@@ -7,7 +7,12 @@ body {
     scrollbar-gutter: stable both-edges;
 }
 
+.__next {
+    min-height: 100vh;
+}
+
 body {
+
     padding: 64px 0 0 0;
 }
 
@@ -17,6 +22,7 @@ body {
 
 
 main {
+    height: calc(100vh - 64px);
     animation: fadeIn 750ms ease-in;
 }
 

@@ -32,7 +32,7 @@ const Navbar: NextPage = () => {
                     <Link href="/achievements">
                         <a>réalisations</a>
                     </Link>
-                    {session ?
+                    {typeof session !== "undefined" && session !== null && (
                         session.user?.image ?
                             <Menu>
                                 <MenuButton>
@@ -51,13 +51,9 @@ const Navbar: NextPage = () => {
                                     <MenuItem onClick={() => signOut()}>déconnexion</MenuItem>
                                 </MenuList>
                             </Menu> :
-                        <a onClick={() => signOut()}>déconnexion</a> :
-                        <Link href="/login">
-                            <a>connexion</a>
-                        </Link>
-
+                            <a onClick={() => signOut()}>déconnexion</a>
+                        )
                     }
-
                 </Box>
             </Container>
         </nav>

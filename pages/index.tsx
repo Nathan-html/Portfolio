@@ -25,6 +25,7 @@ import years from "../data/years";
 import skills from "../data/skills";
 import {useSession} from "next-auth/react";
 import achievements from "../data/achievements";
+import Dashboard from "./dashboard";
 
 const responsive = {
     desktop: {
@@ -46,27 +47,15 @@ const responsive = {
 
 // @ts-ignore
 const Home: NextPage = ({deviceType}) => {
-
-    const { data: session } = useSession()
-
+    const { data: session } = useSession();
     const yearProps = (value: any) => {
         return {props: value}
     }
 
-    const achievementProps = (value: any, key: number) => {
-        const render = {...value, key: key}
-        return {
-            props: render
-        }
-    }
-
-    const skillProps = (value: any) => {
-        return {props: value}
-    }
-
     // Page for admin
-    if (session) {
-        return <p>dashboard</p>
+    // if (session?.user?.role && session?.user?.role === "ADMIN"|| session?.user?.role === "OWNER") {
+    if (session?.user) {
+        return <Dashboard />
     } else {
         // @ts-ignore
         return <main>
@@ -191,7 +180,7 @@ const Home: NextPage = ({deviceType}) => {
                 responsive={responsive}
             >
                 {achievements.map((achievement: any, key: number) => {
-                    return <Achievement key={key} {...achievementProps(achievement, key)} />
+                    return <Achievement key={key} {...achievement} />
                 })}
             </Carousel>
             <hr style={{margin: "2rem"}}/>

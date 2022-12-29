@@ -1,71 +1,21 @@
+import * as React from "react";
+import Head from "next/head";
 import {
-    Button,
-    Checkbox,
     Flex,
-    FormControl,
-    FormLabel,
-    Heading,
-    Input,
     Stack,
     Image,
 } from '@chakra-ui/react';
-import Link from "next/link";
-import {signIn} from "next-auth/react";
-import {ChangeEvent, FormEvent, FormEventHandler, useState} from "react";
+import LoginForm from "../components/form/loginForm";
+import {getProviders} from "next-auth/react";
 
-export default function SplitScreen() {
-    const [user, setUser] = useState({email: "", password: ""});
-    function handleEmail(event: ChangeEvent<HTMLInputElement>) {
-        setUser({...user, email: event.target.value});
-    }
-    function handlePassword(event: ChangeEvent<HTMLInputElement>) {
-        setUser({...user, password: event.target.value});
-    }
-    const handleForm: FormEventHandler<HTMLFormElement> = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const res = await signIn('credentials', {
-            email: user.email,
-            password: user.password,
-            redirect: false
-        });
-        if (res && res.error) console.log(res);
-    }
-    return (
-        <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
+export default function LoginPage({ providers } : { providers: [{name: string, id: string}]}) {
+    return <main>
+        <Head>
+            <title>connexion - nathan flacher</title>
+        </Head>
+        <Stack height={"100%"} direction={{ base: 'column', md: 'row' }}>
             <Flex p={8} flex={1} align={'center'} justify={'center'}>
-                <Stack spacing={4} w={'full'} maxW={'md'}>
-                    <form onSubmit={handleForm}>
-                        <Heading fontSize={'2xl'}>Sign in to your account</Heading>
-                        <FormControl id="email">
-                            <FormLabel>Email</FormLabel>
-                            <Input
-                                name={"email"}
-                                type="email"
-                                value={user.email}
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => handleEmail(e)} />
-                        </FormControl>
-                        <FormControl id="password">
-                            <FormLabel>Password</FormLabel>
-                            <Input
-                                name={"password"}
-                                type="password"
-                                value={user.password}
-                                onChange={(e: ChangeEvent<HTMLInputElement>) => handlePassword(e)} />
-                        </FormControl>
-                        <Stack spacing={6}>
-                            <Stack
-                                direction={{ base: 'column', sm: 'row' }}
-                                align={'start'}
-                                justify={'space-between'}>
-                                <Checkbox>Remember me</Checkbox>
-                                <Link color={'blue.500'} href="/forgot-password">Forgot password ?</Link>
-                            </Stack>
-                            <Button type={"submit"} colorScheme={'blue'} variant={'solid'}>
-                                Sign in
-                            </Button>
-                        </Stack>
-                    </form>
-                </Stack>
+                <LoginForm providers={providers} />
             </Flex>
             <Flex flex={1}>
                 <Image
@@ -77,5 +27,12 @@ export default function SplitScreen() {
                 />
             </Flex>
         </Stack>
-    );
+    </main>
+}
+
+export async function getServerSideProps() {
+    const providers = await getProviders()
+    return {
+        props: { providers },
+    }
 }

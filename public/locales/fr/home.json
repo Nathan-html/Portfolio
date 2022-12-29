@@ -1,1 +1,17 @@
-{"biographyText":"je suis un développeur passionné par le JavaScript aimant également l’art et le sport","biographyTitle":"bio","contactText":"Lyon, France\ncontact@nathan-flacher.com\n06 95 41 73 00","contactTitle":"contact","finishedProjects":"projets finis","inProgressImprovement":"En cours d’amélioration","mySkills":"mes compétences","myStack":"Mon stack","servicesText":"Développement web\nDéveloppement mobile\nDesign","servicesTitle":"services","theMostUsed":"les plus utilisées","title":"Nathan Flacher développeur web et logiciel sur Lyon","yearsOfExperience":"années d’expérience"}
+{
+  "homeMetaTitle": "",
+  "homeMetaDesc": "",
+  "biographyText": "je suis un développeur passionné par le JavaScript aimant également l’art et le sport",
+  "biographyTitle": "bio",
+  "contactText": "Lyon, France\ncontact@nathan-flacher.com\n06 95 41 73 00",
+  "contactTitle": "contact",
+  "finishedProjects": "projets finis",
+  "inProgressImprovement": "En cours d’amélioration",
+  "mySkills": "mes compétences",
+  "myStack": "Mon stack",
+  "servicesText": "Développement web\nDéveloppement mobile\nDesign",
+  "servicesTitle": "services",
+  "theMostUsed": "les plus utilisées",
+  "title": "Nathan Flacher développeur web et logiciel sur Lyon",
+  "yearsOfExperience": "années d’expérience"
+}

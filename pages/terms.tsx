@@ -1,8 +1,8 @@
 import {NextPage} from "next";
 import LoadingScreen from "../components/loadingScreen";
 
-const Contact: NextPage = () => {
+const Terms: NextPage = () => {
     return <LoadingScreen />
 }
 
-export default Contact
+export default Terms

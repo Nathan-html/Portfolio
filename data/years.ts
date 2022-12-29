@@ -51,12 +51,6 @@ const years = [
                 title: "CDD 1 ans",
                 desc: "Alternance en tant que développeur web",
                 place: "We Guide You"
-            },
-            {
-                state: "none",
-                title: "Freelance en tant que développeur web",
-                desc: "none",
-                place: "Émilie flacher"
             }
         ]
     },

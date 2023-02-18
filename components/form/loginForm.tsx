@@ -1,7 +1,6 @@
 import {Box, Button, Checkbox, FormControl, FormLabel, Heading, Input, Stack, Text} from "@chakra-ui/react";
 import Link from "next/link";
-import {getProviders, signIn} from "next-auth/react";
-import * as React from "react";
+import {signIn} from "next-auth/react";
 import {FormikConfig, FormikProps, useFormik} from "formik";
 
 /** properties of the form */

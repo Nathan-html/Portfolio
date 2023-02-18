@@ -22,9 +22,9 @@ async function main() {
     } else {
         console.error(
             `Please add environment variables: 
-            ${typeof process.env.ADMIN_EMAIL !== "string" && 'ADMIN_NAME'} 
+            ${typeof process.env.ADMIN_EMAIL !== "string" && 'ADMIN_EMAIL'} 
             ${typeof process.env.ADMIN_NAME !== "string" && 'ADMIN_NAME'} 
-            ${typeof process.env.ADMIN_PASSWORD !== "string" && 'ADMIN_NAME'}`
+            ${typeof process.env.ADMIN_PASSWORD !== "string" && 'ADMIN_PASSWORD'}`
         )
     }
 }

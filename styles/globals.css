@@ -22,7 +22,7 @@ body {
 
 
 main {
-    height: calc(100vh - 64px);
+    min-height: calc(100vh - 64px);
     animation: fadeIn 750ms ease-in;
 }
 

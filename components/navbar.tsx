@@ -1,13 +1,20 @@
-import {Avatar, Box, Container, Menu, MenuButton, MenuItem, MenuList, Text} from "@chakra-ui/react";
+import {Avatar, Box, Button, Container, Menu, MenuButton, MenuItem, MenuList, Text, useColorMode} from "@chakra-ui/react";
 import {NextPage} from "next";
 import Link from "next/link";
 import Image from "next/image";
 import ImageLogo from "../public/logo.svg";
 import {signOut, useSession} from "next-auth/react";
-import * as React from "react";
+import { RiMoonClearFill, RiSunFill } from "react-icons/ri";
+import { BiChevronDown } from "react-icons/bi";
+import { NextRouter, useRouter } from "next/router";
+import { i18n } from "../next-i18next.config";
+import { ParsedUrlQuery } from "querystring";
 
 const Navbar: NextPage = () => {
-    const { data: session } = useSession()
+    const { colorMode, toggleColorMode } = useColorMode();
+    const { data: session } = useSession();
+    const router: NextRouter = useRouter();
+    const { pathname, asPath, query , locale } = router;
     return (
         <nav style={{
             zIndex: "101",
@@ -25,13 +32,49 @@ const Navbar: NextPage = () => {
                 <Link href="/">
                     <Image src={ImageLogo} height={20} width={20} alt={"Mon logo, Nathan Flacher"} />
                 </Link>
-                <Box display={"flex"} gap={4} alignItems={"center"}>
-                    <Link href="/projects">
-                        <a>projects</a>
-                    </Link>
-                    <Link href="/achievements">
-                        <a>réalisations</a>
-                    </Link>
+                <Box display={"flex"} alignItems={"center"}>
+                    {/* Choose Locale */}
+                    <Menu>
+                        <MenuButton variant={"ghost"} as={Button} rightIcon={<BiChevronDown />}>
+                            <img
+                                loading="lazy"
+                                src={`https://flagcdn.com/20x15/${locale?.toLowerCase()}.png`}
+                                srcSet={`https://flagcdn.com/40x30/${locale?.toLowerCase()}.png 2x, 
+                                https://flagcdn.com/60x45/${locale?.toLowerCase()}.png 3x`}
+                                width="20"
+                                height="15"
+                                alt={locale?.toLowerCase()} />
+                        </MenuButton>
+                        <MenuList>
+                            {i18n.locales.map((locale: string, key: number) => (
+                                <MenuItem key={key} gap={'0.5rem'} onClick={() => router.push({ pathname, query }, asPath, { locale: locale })}>
+                                    <img
+                                        loading="lazy"
+                                        src={`https://flagcdn.com/20x15/${locale.toLowerCase()}.png`}
+                                        srcSet={`https://flagcdn.com/40x30/${locale.toLowerCase()}.png 2x, 
+                                        https://flagcdn.com/60x45/${locale.toLowerCase()}.png 3x`}
+                                        width="20"
+                                        height="15"
+                                        alt={locale.toLowerCase()} />
+                                        {locale.toUpperCase()}
+                                </MenuItem>
+                            ))}
+                        </MenuList>
+                    </Menu>
+                    {/* Dark or Light mode */}
+                    <Button onClick={toggleColorMode} variant={"ghost"}>
+                        {colorMode === 'light' ? <RiSunFill /> : <RiMoonClearFill />}
+                    </Button>
+                    <Button variant={"ghost"}>
+                        <Link href="/projects">
+                            projects
+                        </Link>
+                    </Button>
+                    <Button variant={"ghost"}>
+                        <Link href="/achievements">
+                            réalisations
+                        </Link>
+                    </Button>
                     {typeof session !== "undefined" && session !== null && (
                         session.user?.image ?
                             <Menu>

@@ -3,7 +3,6 @@ import type { AppProps } from 'next/app'
 import {ChakraProvider} from "@chakra-ui/provider";
 import theme from "../styles/themes/theme";
 import Navbar from "../components/navbar";
-import CustomCursor from "../components/cursor";
 import {appWithTranslation} from "next-i18next";
 import { SessionProvider } from "next-auth/react"
 

@@ -1,10 +1,10 @@
-import {Box, Heading} from "@chakra-ui/react";
-import {ClockLoader, PuffLoader} from "react-spinners";
+import {Box, Heading, useColorMode} from "@chakra-ui/react";
+import {PuffLoader} from "react-spinners";
 
 export default function LoadingScreen () {
+    const { colorMode } = useColorMode();
     return <main>
         <Box sx={{
-            background: "white",
             position: "fixed",
             top: 0,
             bottom: 0,
@@ -19,7 +19,7 @@ export default function LoadingScreen () {
         }}>
             <Heading as="h2" sx={{fontFamily: "Amiri", fontWeight: "500", fontStyle: "italic"}}>Veuillez patienter</Heading>
             <PuffLoader
-                color="black"
+                color={ colorMode === "light" ? "black" : "white"}
                 loading
                 size={200}
             />

@@ -28,6 +28,7 @@ import achievements from "../data/achievements";
 import Dashboard from "./dashboard";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import LoadingScreen from "../components/loadingScreen";
 
 const responsive = {
   desktop: {
@@ -47,31 +48,33 @@ const responsive = {
   },
 };
 
-// @ts-ignore
-const Home: NextPage = ({ deviceType }) => {
+const Home = ({ deviceType }: { deviceType: string }): JSX.Element => {
   const { t } = useTranslation("home");
   const { data: session } = useSession();
   const yearProps = (value: any) => {
     return { props: value };
   };
 
-  // Page for admin
+  if (typeof session === "undefined") {
+    // Loading screen
+    return <LoadingScreen />
   // if (session?.user?.role && session?.user?.role === "ADMIN"|| session?.user?.role === "OWNER") {
-  if (session?.user) {
-    return <Dashboard />;
-  } else {
-    // @ts-ignore
+  } else if (session?.user) {
+    // For admins or owner
+    return (<Dashboard />);
+  } else if (session === null) {
     return (
       <Box as="main">
+        {/* SEO */}
+        <Head>
+          <title>Développeur front-end freelance sur Lyon</title>
+          <meta
+            name="description"
+            content="Nathan Flacher, Je suis un développeur passionné par le JavaScript, 
+            aimant également l'art 🎨 et le volley 🏐"
+          />
+        </Head>
         <Container maxW="5xl">
-          <Head>
-            <title>Développeur front-end freelance sur Lyon</title>
-            <meta
-              name="description"
-              content="Nathan Flacher, Je suis un développeur passionné par le JavaScript, aimant également
-                      l’art 🎨 et le volley 🏐"
-            />
-          </Head>
           <Heading
             as="h1"
             size={{ md: "4xl" }}
@@ -82,6 +85,7 @@ const Home: NextPage = ({ deviceType }) => {
               margin: "3rem 0",
             }}
           >
+            Nathan Flacher<br/>
             {t("title")}
           </Heading>
           <Grid
@@ -342,13 +346,16 @@ const Home: NextPage = ({ deviceType }) => {
         </Container>
       </Box>
     );
+  } else {
+    //TODO ErrorScreen
+    return <p>error...</p>
   }
 };
 
-type getServerSidePropsType = {
-  req: any;
-  // locale: string;
-}
+// type getServerSidePropsType = {
+//   req: any;
+//   // locale: string;
+// }
 
 // Fetch language SSG
 export async function getStaticProps({ locale }: { locale: string }) {

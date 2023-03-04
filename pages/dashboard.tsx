@@ -3,6 +3,7 @@ import {Box} from "@chakra-ui/react";
 import {css} from "@emotion/react";
 import DashboardItem from "../components/dashboardItem";
 import {useState} from "react";
+import UserSection from "../components/dashboard/userSection";
 
 export default function Dashboard () {
     const { data: session } = useSession();
@@ -28,12 +29,14 @@ export default function Dashboard () {
                 <DashboardItem section={section} setSection={setSection} name={'Achievement'} />
                 <DashboardItem section={section} setSection={setSection} name={'History'} />
             </Box>
-            <Box>
+            <Box css={css`
+                width: 100%
+            `}>
                 {
                     section === 'Home' ?
                         <p>home</p>
                     : section === 'User' ?
-                        <p>user</p>
+                        <UserSection/>
                     : section === 'Mail' ?
                         <p>mail</p>
                     : section === 'Skill' ?

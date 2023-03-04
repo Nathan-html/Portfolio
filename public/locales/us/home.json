@@ -1,4 +1,5 @@
 {
+  "title": "web and software developer in Lyon",
   "biographyText": "I am a developer passionate about JavaScript who also loves art and sports",
   "biographyTitle": "Bio",
   "localization": "Lyon, France",
@@ -12,6 +13,5 @@
   "servicesText": "Web development Mobile development Design",
   "servicesTitle": "Services",
   "theMostUsed": "most used",
-  "title": "Nathan Flacher web and software developer in Lyon",
   "yearsOfExperience": "Years of experience"
 }

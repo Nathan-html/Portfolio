@@ -345,30 +345,37 @@ const Home: NextPage = ({ deviceType }) => {
   }
 };
 
-export async function getServerSideProps({
-  req,
-  locale,
-}: {
+type getServerSidePropsType = {
   req: any;
-  locale: string;
-}) {
-  let userAgent: any;
-  if (req) {
-    userAgent = req.headers["user-agent"];
-  } else {
-    userAgent = navigator.userAgent;
-  }
-  const parser: UAParser.UAParserInstance = new UAParser();
-  parser.setUA(userAgent);
-  const result: UAParser.IResult = parser.getResult();
-  const deviceType = (result.device && result.device.type) || "desktop";
+  // locale: string;
+}
+
+// Fetch language SSG
+export async function getStaticProps({ locale }: { locale: string }) {
   return {
     props: {
-      deviceType,
-      ...(await serverSideTranslations(locale, ["home"])),
+      ...(await serverSideTranslations(locale, ['home'])),
       // Will be passed to the page component as props
     },
-  };
+  }
 }
+// Fetch UA parser in SSR
+// export async function getServerSideProps({ req }: getServerSidePropsType) {
+//   let userAgent: any;
+//   if (req) {
+//     userAgent = req.headers["user-agent"];
+//   } else {
+//     userAgent = navigator.userAgent;
+//   }
+//   const parser: UAParser.UAParserInstance = new UAParser();
+//   parser.setUA(userAgent);
+//   const result: UAParser.IResult = parser.getResult();
+//   const deviceType = (result.device && result.device.type) || "desktop";
+//   return {
+//     props: {
+//       deviceType,
+//     },
+//   };
+// }
 
 export default Home;

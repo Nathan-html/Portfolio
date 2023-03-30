@@ -89,9 +89,12 @@ const Navbar: NextPage = () => {
                                     <Box margin={"0 12px"}>
                                         <Text fontSize={"lg"} fontWeight={"semibold"}>{session.user?.name}</Text>
                                         <Text marginBottom={"12px"}>{session.user?.email}</Text>
-                                        <hr />
                                     </Box>
-                                    <MenuItem onClick={() => signOut()}>déconnexion</MenuItem>
+                                    <Link href="/dashboard">
+                                        <MenuItem>Tableau de bord</MenuItem>
+                                    </Link>
+                                    <hr />
+                                    <MenuItem onClick={() => signOut()}>Déconnexion</MenuItem>
                                 </MenuList>
                             </Menu> :
                             <a onClick={() => signOut()}>déconnexion</a>

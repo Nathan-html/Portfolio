@@ -1,29 +1,6 @@
 import { extendTheme } from '@chakra-ui/react'
 
 const theme = extendTheme({
-    // styles: {
-    //     global: {
-    //         // styles for the `body`
-    //         body: {
-    //             bg: bg
-    //         },
-    //         h1: {
-    //             color: 'white'
-    //         },
-    //         h2: {
-    //             color: 'white'
-    //         },
-    //         h3: {
-    //             color: 'white'
-    //         },
-    //         p: {
-    //             color: 'white'
-    //         },
-    //         a: {
-    //             color: 'white'
-    //         }
-    //     },
-    // },
     // components: {
     //     Box: {
     //         baseStyle: {

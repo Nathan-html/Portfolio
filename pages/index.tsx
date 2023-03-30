@@ -21,14 +21,15 @@ import SkillCard from "../components/skillCard";
 import Year from "../components/year";
 import Link from "next/link";
 import Achievement from "../components/achievement";
-import years from "../data/years";
-import skills from "../data/skills";
+import years from "../src/data/years";
+import skills from "../src/data/skills";
 import { useSession } from "next-auth/react";
-import achievements from "../data/achievements";
+import achievements from "../src/data/achievements";
 import Dashboard from "./dashboard";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import LoadingScreen from "../components/loadingScreen";
+import { getUsers } from "../src/request/user";
 
 const responsive = {
   desktop: {
@@ -50,20 +51,10 @@ const responsive = {
 
 const Home = ({ deviceType }: { deviceType: string }): JSX.Element => {
   const { t } = useTranslation("home");
-  const { data: session } = useSession();
   const yearProps = (value: any) => {
     return { props: value };
   };
-
-  if (typeof session === "undefined") {
-    // Loading screen
-    return <LoadingScreen />
-  // if (session?.user?.role && session?.user?.role === "ADMIN"|| session?.user?.role === "OWNER") {
-  } else if (session?.user) {
-    // For admins or owner
-    return (<Dashboard />);
-  } else if (session === null) {
-    return (
+  return (
       <Box as="main">
         {/* SEO */}
         <Head>
@@ -346,10 +337,6 @@ const Home = ({ deviceType }: { deviceType: string }): JSX.Element => {
         </Container>
       </Box>
     );
-  } else {
-    //TODO ErrorScreen
-    return <p>error...</p>
-  }
 };
 
 // type getServerSidePropsType = {

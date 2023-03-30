@@ -1,8 +1,8 @@
 import {StaticImageData} from "next/image";
-import laTania from '../public/images/black-ski-la-tania.png';
-import portfolioFigma from '../public/images/portfolio.png';
-import portfolioNextJS from '../public/images/portfolio-nextjs.png';
-import wgy from '../public/images/WGY.png';
+import laTania from '../../public/images/black-ski-la-tania.png';
+import portfolioFigma from '../../public/images/portfolio.png';
+import portfolioNextJS from '../../public/images/portfolio-nextjs.png';
+import wgy from '../../public/images/WGY.png';
 
 type Achievement = {
     img: string | StaticImageData,

@@ -11,7 +11,7 @@ import { User } from "@prisma/client";
 import Table from "../table/table";
 import DialogDelete from "../dialog/DialogDelete";
 
-function UserSection (): JSX.Element {
+function AchivementSection (): JSX.Element {
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<boolean>(false);
     const [page, setPage] = useState(0);
@@ -87,4 +87,4 @@ function UserSection (): JSX.Element {
     </Box>
 }
 
-export default UserSection;
+export default AchivementSection;

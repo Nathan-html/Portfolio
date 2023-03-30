@@ -4,6 +4,13 @@ import {css} from "@emotion/react";
 import DashboardItem from "../components/dashboardItem";
 import {useState} from "react";
 import UserSection from "../components/dashboard/userSection";
+import Head from "next/head";
+import config from "../config";
+import HomeSection from "../components/dashboard/home";
+import MailSection from "../components/dashboard/mail";
+import SkillSection from "../components/dashboard/skill";
+import HistorySection from "../components/dashboard/history";
+import AchivementSection from "../components/dashboard/achivement";
 
 export default function Dashboard () {
     const { data: session } = useSession();
@@ -18,6 +25,14 @@ export default function Dashboard () {
                 display: flex;
                 gap: 1rem;
             `}>
+            {/* SEO */}
+            <Head>
+                <title>Administration {config.seoMainSeparator} Nathan Flacher</title>
+                <meta
+                    name="description"
+                    content="Administration de mon site personel"
+                />
+            </Head>
             <Box css={css`
                 border-right: 1px solid black;
                 color: black;
@@ -34,13 +49,17 @@ export default function Dashboard () {
             `}>
                 {
                     section === 'Home' ?
-                        <p>home</p>
+                        <HomeSection/>
                     : section === 'User' ?
                         <UserSection/>
                     : section === 'Mail' ?
-                        <p>mail</p>
+                        <MailSection/>
                     : section === 'Skill' ?
-                        <p>Skill</p>
+                        <SkillSection/>
+                    : section === 'Achievement' ?
+                        <AchivementSection/>
+                    : section === 'History' ?
+                        <HistorySection/>
                     : <p>not found</p>
                 }
             </Box>

@@ -1,9 +1,10 @@
-import {PrismaClient} from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt";
+import { NextApiRequest, NextApiResponse } from "next";
 
 const prisma = new PrismaClient();
 
-export default async function handler(req, res) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
         if (!req.body) res.status(400).json('Need Data')
         const {name, email, password} = req.body
@@ -12,7 +13,7 @@ export default async function handler(req, res) {
                 email: email
             }
         })
-        if (user.count() === 0) {
+        if (user) {
             const { password } = req.body
             const hash = await bcrypt.hash(password, Number(process.env.AUTH_SALT) || 10);
             try {

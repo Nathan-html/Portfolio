@@ -2,13 +2,12 @@ import {Avatar, Box, Button, Container, Menu, MenuButton, MenuItem, MenuList, Te
 import {NextPage} from "next";
 import Link from "next/link";
 import Image from "next/image";
-import ImageLogo from "../public/logo.svg";
+import ImageLogo from "../../public/logo.svg";
 import {signOut, useSession} from "next-auth/react";
 import { RiMoonClearFill, RiSunFill } from "react-icons/ri";
 import { BiChevronDown } from "react-icons/bi";
 import { NextRouter, useRouter } from "next/router";
-import { i18n } from "../next-i18next.config";
-import { ParsedUrlQuery } from "querystring";
+import { i18n } from "../../next-i18next.config";
 
 const Navbar: NextPage = () => {
     const { colorMode, toggleColorMode } = useColorMode();

@@ -1,4 +1,3 @@
-import { NextPage } from "next";
 import Head from "next/head";
 import {
   Avatar,
@@ -12,25 +11,19 @@ import {
   Text
 } from "@chakra-ui/react";
 import { PulseLoader } from "react-spinners";
-import UAParser from "ua-parser-js";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Image from "next/image";
-import ImageNathanFlacher from "../public/images/pictures/nathan-flacher-mobile.jpg";
+import ImageNathanFlacher from "../../public/images/pictures/nathan-flacher-mobile.jpg";
 import SkillCard from "../components/skillCard";
 import Year from "../components/year";
 import Link from "next/link";
 import Achievement from "../components/achievement";
-import years from "../src/data/years";
-import skills from "../src/data/skills";
-import { useSession } from "next-auth/react";
-import achievements from "../src/data/achievements";
-import Dashboard from "./dashboard";
+import years from "../data/years";
+import skills from "../data/skills";
+import achievements from "../data/achievements";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import LoadingScreen from "../components/loadingScreen";
-import { getUsers } from "../src/request/user";
-
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },

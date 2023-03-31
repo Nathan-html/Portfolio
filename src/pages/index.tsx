@@ -16,7 +16,7 @@ import UAParser from "ua-parser-js";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Image from 'next/image'
-import ImageNathanFlacher from "../public/images/pictures/nathan-flacher-mobile.jpg";
+import ImageNathanFlacher from "../../public/images/pictures/nathan-flacher-mobile.jpg";
 import SkillCard from "../components/skillCard";
 import Year from "../components/year";
 import Link from "next/link";

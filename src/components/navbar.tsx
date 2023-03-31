@@ -2,7 +2,7 @@ import {Avatar, Box, Container, Menu, MenuButton, MenuItem, MenuList, Text} from
 import {NextPage} from "next";
 import Link from "next/link";
 import Image from "next/image";
-import ImageLogo from "../public/logo.svg";
+import ImageLogo from "../../public/logo.svg";
 import {signOut, useSession} from "next-auth/react";
 import * as React from "react";
 

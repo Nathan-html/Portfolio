@@ -1,8 +1,8 @@
-import {NextPage} from "next";
-import LoadingScreen from "../components/loadingScreen";
+import { NextPage } from 'next'
+import LoadingScreen from '../components/loadingScreen'
 
 const Achievement: NextPage = () => {
-    return <LoadingScreen />
+  return <LoadingScreen />
 }
 
-export default Achievement;
+export default Achievement

@@ -1,4 +1,4 @@
-import Head from "next/head";
+import Head from 'next/head'
 import {
   Avatar,
   AvatarGroup,
@@ -8,22 +8,22 @@ import {
   Grid,
   GridItem,
   Heading,
-  Text
-} from "@chakra-ui/react";
-import { PulseLoader } from "react-spinners";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import Image from "next/image";
-import ImageNathanFlacher from "../../public/images/pictures/nathan-flacher-mobile.jpg";
-import SkillCard from "../components/skillCard";
-import Year from "../components/year";
-import Link from "next/link";
-import Achievement from "../components/achievement";
-import years from "../data/years";
-import skills from "../data/skills";
-import achievements from "../data/achievements";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "next-i18next";
+  Text,
+} from '@chakra-ui/react'
+import { PulseLoader } from 'react-spinners'
+import Carousel from 'react-multi-carousel'
+import 'react-multi-carousel/lib/styles.css'
+import Image from 'next/image'
+import ImageNathanFlacher from '../../public/images/pictures/nathan-flacher-mobile.jpg'
+import SkillCard from '../components/skillCard'
+import Year from '../components/year'
+import Link from 'next/link'
+import Achievement from '../components/achievement'
+import years from '../data/years'
+import skills from '../data/skills'
+import achievements from '../data/achievements'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
@@ -40,221 +40,242 @@ const responsive = {
     items: 1,
     slidesToSlide: 1, // optional, default to 1.
   },
-};
+}
 
 const Home = ({ deviceType }: { deviceType: string }): JSX.Element => {
-  const { t } = useTranslation("home");
+  const { t } = useTranslation('home')
   const yearProps = (value: any) => {
-    return { props: value };
-  };
+    return { props: value }
+  }
   return (
-      <Box as="main">
-        {/* SEO */}
-        <Head>
-          <title>Développeur front-end freelance sur Lyon</title>
-          <meta
-            name="description"
-            content="Nathan Flacher, Je suis un développeur passionné par le JavaScript, 
+    <Box as="main">
+      {/* SEO */}
+      <Head>
+        <title>Développeur front-end freelance sur Lyon</title>
+        <meta
+          name="description"
+          content="Nathan Flacher, Je suis un développeur passionné par le JavaScript, 
             aimant également l'art 🎨 et le volley 🏐"
-          />
-        </Head>
-        <Container maxW="5xl">
-          <Heading
-            as="h1"
-            size={{ md: "4xl" }}
-            sx={{
-              textAlign: "center",
-              fontFamily: "Amiri",
-              fontWeight: "500",
-              margin: "3rem 0",
-            }}
-          >
-            Nathan Flacher<br/>
-            {t("title")}
-          </Heading>
-          <Grid
-            templateColumns={{ base: "1fr", md: "1fr 1.5fr 1fr" }}
-            gap={"4rem"}
-            sx={{ overflow: "hidden", margin: "3rem", alignItems: "center" }}
-          >
-            <Grid w="100%" gap={"2rem"}>
-              <Box>
-                <Heading
-                  as="h3"
-                  sx={{ opacity: "0.25", fontWeight: "500" }}
-                  size="md"
-                >
-                  {t('biographyTitle')}
-                </Heading>
-                <Text>{t("biographyText")}</Text>
-              </Box>
-              <Box>
-                <Heading
-                  as="h3"
-                  sx={{ opacity: "0.25", fontWeight: "500" }}
-                  size="md"
-                >
-                  {t('contactTitle')}
-                </Heading>
-                <Text>{t("localization")}</Text>
-                <Text>
-                  <a href="mailto:contact@nathan-flacher.com">{t("email")}</a>
-                </Text>
-                <Text>
-                  <a href="tel:06 95 41 73 00">{t("phone")}</a>
-                </Text>
-              </Box>
-              <Box>
-                <Heading
-                  as="h3"
-                  sx={{ opacity: "0.25", fontWeight: "500" }}
-                  size="md"
-                >
-                  {t('servicesTitle')}
-                </Heading>
-                <Text>Développement web</Text>
-                <Text>Développement mobile</Text>
-                <Text>Design</Text>
-              </Box>
-            </Grid>
-            <GridItem w="100%">
+        />
+      </Head>
+      <Container maxW="5xl">
+        <Heading
+          as="h1"
+          size={{ md: '4xl' }}
+          sx={{
+            textAlign: 'center',
+            fontFamily: 'Amiri',
+            fontWeight: '500',
+            margin: '3rem 0',
+          }}
+        >
+          Nathan Flacher
+          <br />
+          {t('title')}
+        </Heading>
+        <Grid
+          templateColumns={{ base: '1fr', md: '1fr 1.5fr 1fr' }}
+          gap={'4rem'}
+          sx={{ overflow: 'hidden', margin: '3rem', alignItems: 'center' }}
+        >
+          <Grid w="100%" gap={'2rem'}>
+            <Box>
+              <Heading
+                as="h3"
+                sx={{ opacity: '0.25', fontWeight: '500' }}
+                size="md"
+              >
+                {t('biographyTitle')}
+              </Heading>
+              <Text>{t('biographyText')}</Text>
+            </Box>
+            <Box>
+              <Heading
+                as="h3"
+                sx={{ opacity: '0.25', fontWeight: '500' }}
+                size="md"
+              >
+                {t('contactTitle')}
+              </Heading>
+              <Text>{t('localization')}</Text>
+              <Text>
+                <a href="mailto:contact@nathan-flacher.com">{t('email')}</a>
+              </Text>
+              <Text>
+                <a href="tel:06 95 41 73 00">{t('phone')}</a>
+              </Text>
+            </Box>
+            <Box>
+              <Heading
+                as="h3"
+                sx={{ opacity: '0.25', fontWeight: '500' }}
+                size="md"
+              >
+                {t('servicesTitle')}
+              </Heading>
+              <Text>Développement web</Text>
+              <Text>Développement mobile</Text>
+              <Text>Design</Text>
+            </Box>
+          </Grid>
+          <GridItem w="100%">
+            <Box
+              borderRadius="999"
+              border="2px"
+              borderColor="gray.200"
+              height="500px"
+              margin="1rem"
+              padding="1rem"
+            >
               <Box
                 borderRadius="999"
-                border="2px"
-                borderColor="gray.200"
-                height="500px"
-                margin="1rem"
-                padding="1rem"
+                height={'100%'}
+                width={'100%'}
+                position="relative"
+                overflow={'hidden'}
               >
-                <Box
-                  borderRadius="999"
-                  height={"100%"}
-                  width={"100%"}
-                  position="relative"
-                  overflow={"hidden"}
-                >
-                  {/*<Skeleton margin="16px" borderRadius="999" height='500px'>*/}
-                  <Image
-                    alt="me "
-                    title=""
-                    // loader={myLoader}
-                    src={ImageNathanFlacher}
-                    placeholder="blur"
-                    layout="fill"
-                    objectFit="cover"
-                    style={{
-                      borderRadius: "999px",
-                      userSelect: "none",
+                {/*<Skeleton margin="16px" borderRadius="999" height='500px'>*/}
+                <Image
+                  alt="me "
+                  title=""
+                  // loader={myLoader}
+                  src={ImageNathanFlacher}
+                  placeholder="blur"
+                  layout="fill"
+                  objectFit="cover"
+                  style={{
+                    borderRadius: '999px',
+                    userSelect: 'none',
+                  }}
+                />
+              </Box>
+              {/*</Skeleton>*/}
+            </Box>
+          </GridItem>
+          <Grid w="100%" gap={'4rem'} sx={{ justifyContent: 'end' }}>
+            <Box sx={{ justifySelf: 'end', textAlign: 'end' }}>
+              <Heading
+                as="h3"
+                sx={{ opacity: '0.25', fontWeight: '500' }}
+                size="md"
+              >
+                {t('yearsOfExperience')}
+              </Heading>
+              <Text>2</Text>
+            </Box>
+            <Box sx={{ justifySelf: 'end', textAlign: 'end' }}>
+              <Heading
+                as="h3"
+                sx={{ opacity: '0.25', fontWeight: '500' }}
+                size="md"
+              >
+                {t('finishedProjects')}
+              </Heading>
+              <Text>4</Text>
+            </Box>
+          </Grid>
+        </Grid>
+        <hr style={{ margin: '2rem' }} />
+        <Heading
+          as="h2"
+          size="xl"
+          sx={{ fontFamily: 'Amiri', fontWeight: '500', marginLeft: '1rem' }}
+        >
+          Mes compétences{' '}
+          <i>
+            <span style={{ fontSize: '1.5rem' }}>les plus utilisées</span>
+          </i>
+        </Heading>
+        <Grid
+          minHeight="200px"
+          templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }}
+        >
+          <GridItem margin={'0.5rem'}>
+            <SkillCard skill={skills[0]} />
+          </GridItem>
+          <GridItem margin={'0.5rem'}>
+            <SkillCard skill={skills[1]} />
+          </GridItem>
+          <GridItem margin={'0.5rem'}>
+            <SkillCard skill={skills[2]} />
+          </GridItem>
+        </Grid>
+        <Box margin={'0.5rem 0 1rem 0.5rem'}>
+          <AvatarGroup>
+            {skills.map(
+              (avatar, key) =>
+                key >= 3 && (
+                  <Avatar
+                    key={key}
+                    name={avatar.name}
+                    src={avatar.img.src}
+                    size={{ base: 'sm', md: 'md' }}
+                    position={'relative'}
+                    zIndex={2}
+                    sx={{ border: '0.125rem solid grey' }}
+                    _before={{
+                      content: '""',
+                      width: 'full',
+                      height: 'full',
+                      rounded: 'full',
+                      bg: 'white',
+                      position: 'absolute',
+                      zIndex: -1,
+                      top: 0,
+                      left: 0,
                     }}
                   />
-                </Box>
-                {/*</Skeleton>*/}
-              </Box>
-            </GridItem>
-            <Grid w="100%" gap={"4rem"} sx={{ justifyContent: "end" }}>
-              <Box sx={{ justifySelf: "end", textAlign: "end" }}>
-                <Heading
-                  as="h3"
-                  sx={{ opacity: "0.25", fontWeight: "500" }}
-                  size="md"
-                >
-                  {t('yearsOfExperience')}
-                </Heading>
-                <Text>2</Text>
-              </Box>
-              <Box sx={{ justifySelf: "end", textAlign: "end" }}>
-                <Heading
-                  as="h3"
-                  sx={{ opacity: "0.25", fontWeight: "500" }}
-                  size="md"
-                >
-                  {t('finishedProjects')}
-                </Heading>
-                <Text>4</Text>
-              </Box>
-            </Grid>
-          </Grid>
-          <hr style={{ margin: "2rem" }} />
-          <Heading
-            as="h2"
-            size="xl"
-            sx={{ fontFamily: "Amiri", fontWeight: "500", marginLeft: "1rem" }}
-          >
-            Mes compétences{" "}
-            <i>
-              <span style={{ fontSize: "1.5rem" }}>les plus utilisées</span>
-            </i>
-          </Heading>
-          <Grid
-            minHeight="200px"
-            templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
-          >
-            <GridItem margin={"0.5rem"}>
-              <SkillCard skill={skills[0]} />
-            </GridItem>
-            <GridItem margin={"0.5rem"}>
-              <SkillCard skill={skills[1]} />
-            </GridItem>
-            <GridItem margin={"0.5rem"}>
-              <SkillCard skill={skills[2]} />
-            </GridItem>
-          </Grid>
-          <Box margin={"0.5rem 0 1rem 0.5rem"}>
-            <AvatarGroup>
-              {skills.map(
-                (avatar, key) =>
-                  key >= 3 && (
-                    <Avatar
-                      key={key}
-                      name={avatar.name}
-                      src={avatar.img.src}
-                      size={{ base: "sm", md: "md" }}
-                      position={"relative"}
-                      zIndex={2}
-                      sx={{ border: "0.125rem solid grey" }}
-                      _before={{
-                        content: '""',
-                        width: "full",
-                        height: "full",
-                        rounded: "full",
-                        bg: "white",
-                        position: "absolute",
-                        zIndex: -1,
-                        top: 0,
-                        left: 0,
-                      }}
-                    />
-                  )
-              )}
-              <Box
-                sx={{
-                  margin: "0 1rem",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.25rem",
-                }}
-              >
-                <PulseLoader size={8} color="grey" />
-                <Text sx={{ fontSize: "10px", lineHeight: "10px" }}>
-                  En cours
-                  <br />
-                  d’amélioration
-                </Text>
-              </Box>
-            </AvatarGroup>
-          </Box>
-          <hr style={{ margin: "2rem" }} />
-          <Heading
-            as="h2"
-            size="xl"
-            sx={{
-              fontFamily: "Amiri",
-              fontWeight: "500",
-              textAlign: "center",
-            }}
-          >
-            Mes <i>meilleures</i> réalisations
-          </Heading>
+                )
+            )}
+            <Box
+              sx={{
+                margin: '0 1rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.25rem',
+              }}
+            >
+              <PulseLoader size={8} color="grey" />
+              <Text sx={{ fontSize: '10px', lineHeight: '10px' }}>
+                En cours
+                <br />
+                d’amélioration
+              </Text>
+            </Box>
+          </AvatarGroup>
+        </Box>
+        <hr style={{ margin: '2rem' }} />
+        <Heading
+          as="h2"
+          size="xl"
+          sx={{
+            fontFamily: 'Amiri',
+            fontWeight: '500',
+            textAlign: 'center',
+          }}
+        >
+          Mes <i>meilleures</i> réalisations
+        </Heading>
+        <Carousel
+          ssr
+          partialVisbile
+          deviceType={deviceType}
+          itemClass="image-item"
+          responsive={responsive}
+        >
+          {achievements.map((achievement: any, key: number) => {
+            return <Achievement key={key} {...achievement} />
+          })}
+        </Carousel>
+        <hr style={{ margin: '2rem' }} />
+        <Heading
+          as="h2"
+          size="xl"
+          sx={{ fontFamily: 'Amiri', fontWeight: '500', textAlign: 'center' }}
+        >
+          Mon historique
+        </Heading>
+        <Box marginTop={'2rem'}>
           <Carousel
             ssr
             partialVisbile
@@ -262,75 +283,55 @@ const Home = ({ deviceType }: { deviceType: string }): JSX.Element => {
             itemClass="image-item"
             responsive={responsive}
           >
-            {achievements.map((achievement: any, key: number) => {
-              return <Achievement key={key} {...achievement} />;
+            {years.map((value: any, key: number) => {
+              return <Year key={key} {...yearProps(value)} />
             })}
           </Carousel>
-          <hr style={{ margin: "2rem" }} />
+        </Box>
+        <hr style={{ margin: '2rem' }} />
+        <Box
+          sx={{
+            margin: '4rem',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '2rem',
+          }}
+        >
           <Heading
             as="h2"
             size="xl"
-            sx={{ fontFamily: "Amiri", fontWeight: "500", textAlign: "center" }}
-          >
-            Mon historique
-          </Heading>
-          <Box marginTop={"2rem"}>
-            <Carousel
-              ssr
-              partialVisbile
-              deviceType={deviceType}
-              itemClass="image-item"
-              responsive={responsive}
-            >
-              {years.map((value: any, key: number) => {
-                return <Year key={key} {...yearProps(value)} />;
-              })}
-            </Carousel>
-          </Box>
-          <hr style={{ margin: "2rem" }} />
-          <Box
             sx={{
-              margin: "4rem",
-              display: "flex",
-              flexDirection: "column",
-              gap: "2rem",
+              fontFamily: 'Amiri',
+              fontWeight: '500',
+              textAlign: 'center',
             }}
           >
-            <Heading
-              as="h2"
-              size="xl"
-              sx={{
-                fontFamily: "Amiri",
-                fontWeight: "500",
-                textAlign: "center",
-              }}
-            >
-              Vous souhaitez avoir plus d’informations sur mon profil ou faire
-              appel à mes services
-            </Heading>
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
-              <Link href={"/contact"}>
-                <Button colorScheme="black" variant="outline">
-                  contacter moi
-                </Button>
-              </Link>
-            </Box>
+            Vous souhaitez avoir plus d’informations sur mon profil ou faire
+            appel à mes services
+          </Heading>
+          <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Link href={'/contact'}>
+              <Button colorScheme="black" variant="outline">
+                contacter moi
+              </Button>
+            </Link>
           </Box>
-          <hr style={{ margin: "2rem" }} />
-          <footer
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              margin: "2rem 0",
-            }}
-          >
-            <Text>©2022 | Nathan-Flacher</Text>
-            <Text>contact@nathan-flacher.com</Text>
-          </footer>
-        </Container>
-      </Box>
-    );
-};
+        </Box>
+        <hr style={{ margin: '2rem' }} />
+        <footer
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            margin: '2rem 0',
+          }}
+        >
+          <Text>©2022 | Nathan-Flacher</Text>
+          <Text>contact@nathan-flacher.com</Text>
+        </footer>
+      </Container>
+    </Box>
+  )
+}
 
 // type getServerSidePropsType = {
 //   req: any;
@@ -365,4 +366,4 @@ export async function getStaticProps({ locale }: { locale: string }) {
 //   };
 // }
 
-export default Home;
+export default Home

@@ -1,8 +1,8 @@
-import LoadingScreen from "../components/loadingScreen";
-import {NextPage} from "next";
+import LoadingScreen from '../components/loadingScreen'
+import { NextPage } from 'next'
 
 const ForgotPassword: NextPage = () => {
-    return <LoadingScreen />
+  return <LoadingScreen />
 }
 
-export default ForgotPassword;
+export default ForgotPassword

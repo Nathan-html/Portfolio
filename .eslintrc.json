@@ -1,9 +1,12 @@
 {
+  "plugins": ["@typescript-eslint"],
   "extends": [
-    // "eslint:recommended",
-    // "plugin:import/errors",
-    // "plugin:react/recommended",
-    // "plugin:jsx-a11y/recommended",
-    "next/core-web-vitals"
-  ]
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error"
+  }
 }

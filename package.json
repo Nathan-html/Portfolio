@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "fixtures": "ts-node ./scripts/prisma/fixtures.ts",
-    "prisma-studio": "npx prisma studio"
+    "prisma-studio": "npx prisma studio",
+    "format": "prettier --write ./src"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.3.6",
@@ -35,11 +36,14 @@
     "@types/react": "^18.0.21",
     "@types/react-dom": "18.0.6",
     "@types/ua-parser-js": "^0.7.36",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
     "eslint": "8.26.0",
     "eslint-config-next": "12.3.1",
+    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-react": "^7.32.2",
+    "prettier": "^2.8.7",
     "prisma": "^4.7.1",
     "ts-node": "^10.9.1",
     "typescript": "4.8.4"

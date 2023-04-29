@@ -2,6 +2,7 @@ import { Box, Heading, useColorMode } from '@chakra-ui/react'
 import { PuffLoader } from 'react-spinners'
 
 export default function LoadingScreen() {
+  // Detect if the user is in dark mode or light mode
   const { colorMode } = useColorMode()
   return (
     <main>
@@ -27,6 +28,7 @@ export default function LoadingScreen() {
           Veuillez patienter
         </Heading>
         <PuffLoader
+          // Change the color of the component to match the app theme
           color={colorMode === 'light' ? 'black' : 'white'}
           loading
           size={200}

@@ -26,8 +26,8 @@ export default async function handler(
       res.status(400).json(error)
     }
   } else if (req.method === 'GET') {
-    const email: string | null = (req.query.email as string) || null
-    const token: string | null = (req.query.token as string) || null
+    // const email: string | null = (req.query.email as string) || null
+    // const token: string | null = (req.query.token as string) || null
     const take: number | null = req.query.take
       ? parseInt(req.query.take as string)
       : null

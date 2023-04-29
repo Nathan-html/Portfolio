@@ -44,7 +44,7 @@ const responsive = {
 
 const Home = ({ deviceType }: { deviceType: string }): JSX.Element => {
   const { t } = useTranslation('home')
-  const yearProps = (value: any) => {
+  const yearProps = (value) => {
     return { props: value }
   }
   return (
@@ -263,7 +263,7 @@ const Home = ({ deviceType }: { deviceType: string }): JSX.Element => {
           itemClass="image-item"
           responsive={responsive}
         >
-          {achievements.map((achievement: any, key: number) => {
+          {achievements.map((achievement, key: number) => {
             return <Achievement key={key} {...achievement} />
           })}
         </Carousel>
@@ -283,7 +283,7 @@ const Home = ({ deviceType }: { deviceType: string }): JSX.Element => {
             itemClass="image-item"
             responsive={responsive}
           >
-            {years.map((value: any, key: number) => {
+            {years.map((value, key: number) => {
               return <Year key={key} {...yearProps(value)} />
             })}
           </Carousel>
